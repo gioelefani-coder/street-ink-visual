@@ -7,7 +7,7 @@
   :root{
     --ink:#121014;
     --paper:#F8F7F2;
-    --crema:#F0E3C4;
+    --panel:#E7E7E3;
     --asfalto:#4A4C4B;
     --giunto:#2E3030;
     --giallo:#F6D22C;
@@ -34,18 +34,18 @@
   .r3{height:186px;gap:10px}
 
   .panel{
-    background:var(--crema);border:3px solid var(--ink);border-radius:12px;
+    background:var(--panel);border:3px solid var(--ink);border-radius:12px;
     box-shadow:7px 7px 0 var(--giunto);
     display:flex;flex-direction:column;padding:12px 14px;min-width:0;position:relative;
   }
   .card{
-    background:var(--crema);border:2.5px solid var(--ink);border-radius:10px;
+    background:var(--panel);border:2.5px solid var(--ink);border-radius:10px;
     box-shadow:5px 5px 0 var(--giunto);
     display:flex;flex-direction:column;padding:8px 9px;position:relative;min-height:0;
   }
 
   .phead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px;flex:none}
-  .ptitle{background:var(--ink);color:var(--crema);border-radius:999px;padding:3px 11px 2px;font-size:9px;letter-spacing:.14em}
+  .ptitle{background:var(--ink);color:var(--paper);border-radius:999px;padding:3px 11px 2px;font-size:9px;letter-spacing:.14em}
   .led{width:8px;height:8px;border-radius:50%;background:var(--rosso);border:2px solid var(--ink);flex:none}
   .note{font-size:6.5px;letter-spacing:.1em;color:var(--giunto)}
 
@@ -71,15 +71,15 @@
   .sel{display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--paper);
        border:2.5px solid var(--ink);border-radius:7px;padding:5px 9px 4px;font-size:8.5px;letter-spacing:.09em}
   .sel svg{flex:none}
-  .btn{display:flex;align-items:center;justify-content:center;gap:6px;background:var(--crema);
+  .btn{display:flex;align-items:center;justify-content:center;gap:6px;background:var(--paper);
        border:2.5px solid var(--ink);border-radius:999px;padding:6px 14px 5px;font-size:9px;
        letter-spacing:.12em;box-shadow:0 3px 0 var(--ink);font-weight:700}
   .btn.on{background:var(--rosso);color:var(--paper)}
   .btn.gold{background:var(--giallo)}
   .wbtn{flex:1;text-align:center;font-size:6.5px;letter-spacing:.04em;padding:4px 0 3px;
-        border:2px solid var(--ink);border-radius:4px;background:var(--crema)}
+        border:2px solid var(--ink);border-radius:4px;background:var(--paper)}
   .wbtn.on{background:var(--rosso);color:var(--paper)}
-  .tog{width:12px;height:12px;border-radius:50%;border:2.5px solid var(--ink);background:var(--crema)}
+  .tog{width:12px;height:12px;border-radius:50%;border:2.5px solid var(--ink);background:var(--paper)}
   .tog.on{background:var(--ink)}
   .sw{font-size:6.5px;letter-spacing:.08em;border:2px solid var(--ink);border-radius:999px;padding:1px 5px 0;background:var(--paper)}
   .row-c{display:flex;align-items:center;gap:8px}
@@ -88,35 +88,35 @@
   .brand{background:var(--ink);border-radius:10px;box-shadow:6px 6px 0 var(--giunto);
          padding:7px 12px 6px;display:flex;flex-direction:column;justify-content:center;gap:4px;width:186px;flex:none}
   .brandrow{display:flex;align-items:center;gap:8px}
-  .sbox{width:26px;height:26px;background:var(--crema);border-radius:5px;display:flex;align-items:center;
+  .sbox{width:26px;height:26px;background:var(--paper);border-radius:5px;display:flex;align-items:center;
         justify-content:center;font-size:16px;letter-spacing:0;color:var(--ink);padding-bottom:2px}
-  .brandtxt{color:var(--crema);font-size:19px;letter-spacing:.12em;line-height:1}
+  .brandtxt{color:var(--paper);font-size:19px;letter-spacing:.12em;line-height:1}
   .brandrule{height:3px;background:var(--giallo);border-radius:2px}
-  .brandsub{color:var(--crema);font-size:6px;letter-spacing:.22em;opacity:1}
+  .brandsub{color:var(--paper);font-size:6px;letter-spacing:.22em;opacity:1}
 
-  .presetbar{flex:1;background:var(--crema);border:3px solid var(--ink);border-radius:10px;
+  .presetbar{flex:1;background:var(--panel);border:3px solid var(--ink);border-radius:10px;
              box-shadow:6px 6px 0 var(--giunto);display:flex;align-items:center;gap:10px;padding:0 12px;min-width:0}
   .plabel{font-size:7.5px;letter-spacing:.18em;color:var(--giunto)}
   .pfield{flex:1;background:var(--paper);border:2.5px solid var(--ink);border-radius:6px;padding:5px 10px 4px;
           font-size:14px;letter-spacing:.1em;min-width:0;overflow:hidden;white-space:nowrap}
   .ptag{background:var(--giallo);border:2.5px solid var(--ink);border-radius:999px;padding:4px 10px 3px;
         font-size:7.5px;letter-spacing:.14em;flex:none}
-  .circ{width:32px;height:32px;border-radius:50%;background:var(--crema);border:2.5px solid var(--ink);
+  .circ{width:32px;height:32px;border-radius:50%;background:var(--paper);border:2.5px solid var(--ink);
         display:flex;align-items:center;justify-content:center;flex:none;box-shadow:0 3px 0 var(--ink)}
   .sparks{width:96px;flex:none;display:flex;align-items:center;justify-content:center;gap:6px}
 
-  .mastercard{width:118px;flex:none;background:var(--crema);border:3px solid var(--ink);border-radius:10px;
+  .mastercard{width:118px;flex:none;background:var(--panel);border:3px solid var(--ink);border-radius:10px;
               box-shadow:6px 6px 0 var(--giunto);display:flex;align-items:center;gap:9px;padding:0 10px}
   .mlabel{font-size:7px;letter-spacing:.14em;line-height:1.2;color:var(--ink);width:34px}
-  .boltcard{width:56px;flex:none;background:var(--crema);border:3px solid var(--ink);border-radius:10px;
+  .boltcard{width:56px;flex:none;background:var(--paper);border:3px solid var(--ink);border-radius:10px;
             box-shadow:6px 6px 0 var(--giunto);display:flex;align-items:center;justify-content:center}
 
   /* ---------- rail ---------- */
   .railhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;flex:none}
-  .railpill{background:var(--ink);color:var(--crema);border-radius:999px;padding:2px 8px 1px;font-size:7px;letter-spacing:.12em}
+  .railpill{background:var(--ink);color:var(--paper);border-radius:999px;padding:2px 8px 1px;font-size:7px;letter-spacing:.12em}
   .acidcard{flex:1;display:flex;flex-direction:column;gap:8px;min-height:0}
   .segs{flex:1;display:flex;flex-direction:column;gap:5px;min-height:0}
-  .seg{border:2.5px solid var(--ink);border-radius:5px;background:var(--crema);flex:1}
+  .seg{border:2.5px solid var(--ink);border-radius:5px;background:var(--paper);flex:1}
   .seg.on{background:var(--verde)}
   .seg.hot{background:var(--giallo)}
   .acidrow{display:flex;gap:8px;min-height:0;flex:1;position:relative}
@@ -128,10 +128,10 @@
   .bars{display:flex;align-items:flex-end;gap:4px;height:44px;margin-top:auto}
   .bar{flex:1;background:var(--verde);border:2px solid var(--ink);border-radius:3px 3px 2px 2px}
   .bar.hot{background:var(--giallo)}
-  .randbtn{width:100%;background:var(--crema);border:2.5px solid var(--ink);border-radius:9px;
+  .randbtn{width:100%;background:var(--paper);border:2.5px solid var(--ink);border-radius:9px;
            box-shadow:0 4px 0 var(--ink);display:flex;align-items:center;justify-content:center;gap:7px;
            padding:9px 0 8px;font-size:8px;letter-spacing:.1em;flex:none}
-  .sig{font-size:6px;letter-spacing:.14em;color:var(--crema);line-height:1.5;flex:none;padding-left:2px}
+  .sig{font-size:6px;letter-spacing:.14em;color:var(--paper);line-height:1.5;flex:none;padding-left:2px}
   .sig b{color:var(--giallo)}
 
   /* ---------- wavetable ---------- */
@@ -258,7 +258,7 @@
 
       <div class="randbtn">
         <svg width="16" height="16" viewBox="0 0 16 16">
-          <rect x="1.5" y="1.5" width="13" height="13" rx="3" fill="#F0E3C4" stroke="#121014" stroke-width="2"/>
+          <rect x="1.5" y="1.5" width="13" height="13" rx="3" fill="#F8F7F2" stroke="#121014" stroke-width="2"/>
           <circle cx="5.5" cy="5.5" r="1.4" fill="#121014"/><circle cx="10.5" cy="10.5" r="1.4" fill="#121014"/>
         </svg>
         RANDOMIZE
