@@ -5,32 +5,47 @@
 <title>SYNTHAT — ACID REESE 03</title>
 <style>
   :root{
-    --ink:#15171B;
-    --ink2:#4A4F57;
-    --panel:#EDEEEF;
-    --field:#FAFBFC;
-    --line:#C9CCD1;
-    --win:#24272C;
+    --ink:#14161A;
+    --edge:#0B0D10;
     --paper:#FFFFFF;
-    --muted:#8B9098;
-    --gold:#E3B417;
-    --orange:#DD6A32;
-    --green:#3A7A4C;
-    --blue:#2E5FA8;
+    --panel-hi:#F7F7F2;
+    --panel-lo:#DBDCD4;
+    --win-hi:#41454B;
+    --win-lo:#232629;
+    --gold:#F2C21E;
+    --orange:#E06A2C;
+    --green:#2F6B3D;
+    --blue:#23509E;
     --red:#C4302B;
+    --noise:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html,body{width:1200px;height:820px;overflow:hidden;background:var(--win)}
+  html,body{width:1200px;height:820px;overflow:hidden;background:#1E2125}
   body{
-    font-family:Inter,"Helvetica Neue",Arial,sans-serif;
-    font-weight:600;text-transform:uppercase;letter-spacing:.04em;
+    font-family:"Arial Narrow","Liberation Sans Narrow","Helvetica Neue",Arial,sans-serif;
+    font-weight:700;text-transform:uppercase;letter-spacing:.07em;
     font-size:9px;color:var(--ink);-webkit-font-smoothing:antialiased;
   }
-  .art{position:relative;width:1200px;height:820px;background:var(--win);overflow:hidden}
+  .art{
+    position:relative;width:1200px;height:820px;overflow:hidden;
+    background:
+      repeating-linear-gradient(90deg, rgba(255,255,255,.028) 0 1px, rgba(0,0,0,.03) 1px 2px),
+      linear-gradient(180deg, var(--win-hi) 0%, #33373C 45%, var(--win-lo) 100%);
+  }
+  .art::before{content:"";position:absolute;inset:0;background-image:var(--noise);opacity:.16;mix-blend-mode:overlay;pointer-events:none}
+  .art::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(120% 90% at 50% 0%, rgba(255,255,255,.10), rgba(0,0,0,.28) 100%)}
+
+  /* viti del case */
+  .screw{position:absolute;width:11px;height:11px;border-radius:50%;z-index:3;
+    background:radial-gradient(circle at 34% 30%, #C9CDD2 0%, #8A9097 42%, #4A4F55 100%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.7), inset 0 -1px 1px rgba(0,0,0,.6), 0 1px 2px rgba(0,0,0,.55)}
+  .screw::after{content:"";position:absolute;left:2px;right:2px;top:50%;height:1.6px;margin-top:-.8px;
+    background:#15181C;transform:rotate(-32deg);border-radius:1px}
 
   /* ---------- struttura ---------- */
-  .head{position:absolute;top:12px;left:12px;right:12px;height:56px;display:flex;align-items:stretch;gap:10px}
-  .main{position:absolute;top:78px;left:12px;right:12px;bottom:12px;display:flex;gap:10px}
+  .head{position:absolute;top:12px;left:12px;right:12px;height:56px;display:flex;align-items:stretch;gap:10px;z-index:2}
+  .main{position:absolute;top:78px;left:12px;right:12px;bottom:12px;display:flex;gap:10px;z-index:2}
   .rail{width:130px;flex:none;display:flex;flex-direction:column;gap:8px}
   .grid{flex:1;display:flex;flex-direction:column;gap:10px;min-width:0}
   .row{display:flex;gap:12px;min-width:0}
@@ -38,25 +53,43 @@
   .r2{height:212px;gap:10px}
   .r3{height:186px;gap:10px}
 
+  /* pannelli: plastica/metallo chiaro con bevel */
   .panel{
-    background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;
-    box-shadow:0 5px 14px rgba(0,0,0,.26), inset 0 1px 0 rgba(255,255,255,.55);
-    display:flex;flex-direction:column;padding:12px 14px;min-width:0;position:relative;
+    position:relative;display:flex;flex-direction:column;padding:12px 14px;min-width:0;
+    border:2px solid var(--edge);border-radius:12px;
+    background:linear-gradient(180deg, var(--panel-hi) 0%, #EDEDE6 52%, var(--panel-lo) 100%);
+    box-shadow:
+      inset 0 2px 0 rgba(255,255,255,.95),
+      inset 0 -3px 5px rgba(0,0,0,.13),
+      0 10px 18px rgba(0,0,0,.42),
+      0 2px 3px rgba(0,0,0,.45);
   }
+  .panel::after{content:"";position:absolute;inset:0;border-radius:10px;background-image:var(--noise);
+    opacity:.16;mix-blend-mode:multiply;pointer-events:none}
   .card{
-    background:var(--panel);border:1.5px solid var(--ink);border-radius:7px;
-    box-shadow:0 4px 10px rgba(0,0,0,.22);
-    display:flex;flex-direction:column;padding:8px 9px;position:relative;min-height:0;
+    position:relative;display:flex;flex-direction:column;padding:8px 9px;min-height:0;
+    border:2px solid var(--edge);border-radius:10px;
+    background:linear-gradient(180deg, var(--panel-hi) 0%, #E8E8E1 55%, var(--panel-lo) 100%);
+    box-shadow:
+      inset 0 2px 0 rgba(255,255,255,.95),
+      inset 0 -2px 4px rgba(0,0,0,.12),
+      0 6px 12px rgba(0,0,0,.38);
   }
+  .card::after{content:"";position:absolute;inset:0;border-radius:8px;background-image:var(--noise);
+    opacity:.16;mix-blend-mode:multiply;pointer-events:none}
 
-  .phead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;flex:none}
+  .phead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px;flex:none;position:relative;z-index:1}
   .ptitle{
-    font-size:9.5px;letter-spacing:.16em;color:var(--ink);
-    padding-bottom:3px;border-bottom:2px solid var(--acc,var(--gold));
+    font-size:9px;letter-spacing:.14em;padding:3px 11px 2px;border-radius:999px;
+    color:#F3F2EC;
+    background:linear-gradient(180deg,#3C4046 0%, #1B1E22 55%, #101216 100%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.35), 0 1px 2px rgba(0,0,0,.35);
+    text-shadow:0 -1px 0 rgba(0,0,0,.7);
   }
-  .led{width:6px;height:6px;border-radius:50%;background:var(--red);flex:none}
-  .led.off{background:#B9BDC3}
-  .note{font-size:6.5px;letter-spacing:.12em;color:var(--muted);font-weight:500}
+  .led{width:8px;height:8px;border-radius:50%;flex:none;
+    background:radial-gradient(circle at 35% 30%, #FF8C7E, var(--red) 55%, #7C1512 100%);
+    box-shadow:0 0 6px rgba(196,48,43,.75), inset 0 1px 0 rgba(255,255,255,.5)}
+  .note{font-size:6.5px;letter-spacing:.1em;color:#5C6068;text-shadow:0 1px 0 rgba(255,255,255,.6)}
 
   /* ---------- colore per sezione ---------- */
   .zone-orange{--acc:var(--orange)}
@@ -64,108 +97,203 @@
   .zone-blue{--acc:var(--blue)}
   .zone-red{--acc:var(--red)}
 
-  /* ---------- schermi ---------- */
-  .screen{position:relative;background:#0F1114;border:1px solid #0A0C0E;border-radius:5px;
-          box-shadow:inset 0 2px 8px rgba(0,0,0,.75);overflow:hidden;flex:none}
+  /* ---------- schermi incassati con vetro ---------- */
+  .screen{position:relative;flex:none;overflow:hidden;border-radius:7px;border:2px solid #05070A;
+    background:radial-gradient(120% 100% at 50% 0%, #171B21 0%, #0B0D11 55%, #06080B 100%);
+    box-shadow:
+      inset 0 3px 12px rgba(0,0,0,.95),
+      inset 0 -1px 0 rgba(255,255,255,.05),
+      0 0 0 1px #2B2F35,
+      0 1px 0 rgba(255,255,255,.65);
+  }
   .screen svg{display:block;width:100%;height:100%}
+  .screen::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 3px)}
+  .screen::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(157deg, rgba(255,255,255,.14) 0%, rgba(255,255,255,.03) 30%, rgba(255,255,255,0) 46%)}
 
-  /* ---------- manopole ---------- */
-  .knob{position:relative;border-radius:50%;background:var(--acc,var(--gold));
-        border:2px solid var(--ink);flex:none;
-        box-shadow:0 2px 5px rgba(0,0,0,.32), inset 0 -3px 0 rgba(0,0,0,.13)}
-  .notch{position:absolute;left:50%;bottom:50%;width:2px;height:42%;margin-left:-1px;background:var(--ink);
-         border-radius:1px;transform-origin:50% 100%;transform:rotate(var(--a,-40deg))}
-  .zone-green .notch,.zone-blue .notch,.zone-red .notch{background:#fff}
+  /* ---------- manopole: corpo scuro, linea colorata ---------- */
+  .knob{position:relative;flex:none;border-radius:50%;border:2px solid var(--edge);
+    background:
+      radial-gradient(circle closest-side, rgba(0,0,0,0) 0 73%, #0B0D10 74% 77%, var(--acc,var(--gold)) 89% 100%),
+      radial-gradient(circle at 32% 24%, rgba(255,255,255,.40) 0%, rgba(255,255,255,0) 44%),
+      radial-gradient(circle at 44% 40%, #4B5058 0%, #26292E 60%, #121417 100%);
+    box-shadow:
+      inset 0 1px 1px rgba(255,255,255,.35),
+      inset 0 -4px 8px rgba(0,0,0,.65),
+      0 4px 7px rgba(0,0,0,.5),
+      0 1px 2px rgba(0,0,0,.6);
+  }
+  .knob::after{content:"";position:absolute;left:14%;top:7%;width:54%;height:30%;border-radius:50%;
+    background:linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,0));
+    filter:blur(1.4px);pointer-events:none}
+  .notch{position:absolute;left:50%;bottom:50%;width:3px;height:44%;margin-left:-1.5px;border-radius:2px;
+    background:var(--acc,var(--gold));transform-origin:50% 100%;transform:rotate(var(--a,-40deg));
+    box-shadow:0 0 7px var(--acc,var(--gold)), 0 0 1px rgba(0,0,0,.9)}
   .k92{width:92px;height:92px}.k64{width:64px;height:64px}.k56{width:56px;height:56px}
   .k48{width:48px;height:48px}.k44{width:44px;height:44px}.k40{width:40px;height:40px}
   .k36{width:36px;height:36px}.k32{width:32px;height:32px}
-  .knobwrap{display:flex;flex-direction:column;align-items:center;gap:9px}
-  .klab{font-size:7.5px;letter-spacing:.1em;text-align:center;line-height:1.1;color:var(--ink2)}
-  .kval{font-size:6.5px;letter-spacing:.06em;color:var(--muted);margin-top:1px;font-weight:500}
+  .knobwrap{display:flex;flex-direction:column;align-items:center;gap:9px;position:relative;z-index:1}
+  .klab{font-size:7.5px;letter-spacing:.1em;text-align:center;line-height:1.1;color:#2A2E34;
+    text-shadow:0 1px 0 rgba(255,255,255,.75)}
+  .kval{font-size:6.5px;letter-spacing:.06em;color:#5C6068;margin-top:1px;text-shadow:0 1px 0 rgba(255,255,255,.6)}
 
   /* ---------- controlli ---------- */
-  .sel{display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--field);
-       border:1px solid var(--line);border-radius:4px;padding:5px 9px 4px;font-size:8.5px;letter-spacing:.08em;
-       box-shadow:inset 0 1px 0 rgba(0,0,0,.05)}
-  .sel svg{flex:none}
-  .btn{display:flex;align-items:center;justify-content:center;gap:6px;background:var(--field);
-       border:1.5px solid var(--ink);border-radius:5px;padding:6px 14px 5px;font-size:8.5px;
-       letter-spacing:.1em;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.16)}
-  .btn.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-  .btn.gold{background:var(--gold);border-color:var(--ink);color:var(--ink)}
-  .wbtn{flex:1;text-align:center;font-size:6.5px;letter-spacing:.04em;padding:4px 0 3px;
-        border:1px solid var(--line);border-radius:3px;background:var(--field);color:var(--ink2)}
-  .wbtn.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-  .tog{width:11px;height:11px;border-radius:50%;border:1.5px solid var(--ink);background:var(--field)}
-  .tog.on{background:var(--ink)}
-  .sw{font-size:6.5px;letter-spacing:.08em;border:1px solid var(--line);border-radius:3px;
-      padding:1px 5px 0;background:var(--field);color:var(--ink2)}
-  .row-c{display:flex;align-items:center;gap:8px}
+  .sel{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:8.5px;letter-spacing:.09em;
+    padding:5px 9px 4px;border-radius:7px;border:2px solid var(--edge);color:#1A1D22;
+    background:linear-gradient(180deg,#FFFFFF 0%, #F2F2EC 50%, #E2E3DB 100%);
+    box-shadow:inset 0 1px 0 #FFF, inset 0 -1px 0 rgba(0,0,0,.10), 0 1px 2px rgba(0,0,0,.20);
+    text-shadow:0 1px 0 rgba(255,255,255,.8)}
+  .sel svg{flex:none;filter:drop-shadow(0 1px 0 rgba(255,255,255,.8))}
+  .btn{display:flex;align-items:center;justify-content:center;gap:6px;font-size:9px;letter-spacing:.12em;
+    padding:6px 14px 5px;border-radius:999px;border:2px solid var(--edge);color:#1A1D22;
+    background:linear-gradient(180deg,#FFFFFF 0%, #F0F1EA 46%, #DCDDD5 100%);
+    box-shadow:0 3px 0 #A8ABA3, 0 7px 12px rgba(0,0,0,.28), inset 0 1px 0 #FFF;
+    text-shadow:0 1px 0 rgba(255,255,255,.85)}
+  .btn.on{color:#FFF;border-color:#6E120F;
+    background:linear-gradient(180deg,#E85C55 0%, #C4302B 48%, #9E2019 100%);
+    box-shadow:0 3px 0 #6E120F, 0 7px 12px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.4);
+    text-shadow:0 -1px 0 rgba(0,0,0,.45)}
+  .btn.gold{color:#2A2200;
+    background:linear-gradient(180deg,#FFE479 0%, #F2C21E 48%, #D6A207 100%);
+    box-shadow:0 3px 0 #9A7405, 0 7px 12px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.7);
+    text-shadow:0 1px 0 rgba(255,255,255,.55)}
+  .wbtn{flex:1;text-align:center;font-size:6.5px;letter-spacing:.04em;padding:4px 0 3px;border-radius:4px;
+    border:1.5px solid var(--edge);color:#2A2E34;
+    background:linear-gradient(180deg,#FFFFFF, #E9EAE3);
+    box-shadow:inset 0 1px 0 #FFF, 0 1px 1px rgba(0,0,0,.18)}
+  .wbtn.on{color:#FFF;background:linear-gradient(180deg,#E85C55, #9E2019);border-color:#6E120F;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.4), 0 1px 2px rgba(0,0,0,.3);text-shadow:0 -1px 0 rgba(0,0,0,.4)}
+  .tog{width:12px;height:12px;border-radius:50%;border:2px solid var(--edge);
+    background:radial-gradient(circle at 35% 30%, #FFFFFF, #DCDDD5 60%, #B9BBB3 100%);
+    box-shadow:inset 0 1px 0 #FFF, 0 1px 2px rgba(0,0,0,.25)}
+  .tog.on{background:radial-gradient(circle at 35% 30%, #6E747C, #22252A 60%, #101216 100%);
+    box-shadow:inset 0 1px 1px rgba(255,255,255,.35), 0 1px 2px rgba(0,0,0,.35)}
+  .sw{font-size:6.5px;letter-spacing:.08em;padding:1px 5px 0;border-radius:999px;border:1.5px solid var(--edge);
+    background:linear-gradient(180deg,#FFF,#E7E8E1);color:#2A2E34;box-shadow:inset 0 1px 0 #FFF}
+  .row-c{display:flex;align-items:center;gap:8px;position:relative;z-index:1}
 
   /* ---------- header ---------- */
-  .brand{background:var(--ink);border-radius:8px;box-shadow:0 4px 10px rgba(0,0,0,.3);
-         padding:8px 12px 7px;display:flex;flex-direction:column;justify-content:center;gap:5px;width:186px;flex:none}
-  .brandrow{display:flex;align-items:center;gap:8px}
-  .sbox{width:24px;height:24px;background:var(--gold);border-radius:4px;display:flex;align-items:center;
-        justify-content:center;font-size:15px;letter-spacing:0;color:var(--ink);padding-bottom:2px}
-  .brandtxt{color:var(--paper);font-size:17px;letter-spacing:.16em;line-height:1}
-  .brandrule{height:2px;background:var(--gold);border-radius:1px}
-  .brandsub{color:#9AA0A8;font-size:6px;letter-spacing:.22em;font-weight:500}
+  .brand{position:relative;width:186px;flex:none;display:flex;flex-direction:column;justify-content:center;gap:4px;
+    padding:7px 12px 6px;border-radius:10px;border:2px solid var(--edge);
+    background:linear-gradient(180deg,#2B2F35 0%, #16191D 55%, #0C0E11 100%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.22), 0 8px 16px rgba(0,0,0,.45)}
+  .brand::after{content:"";position:absolute;inset:0;border-radius:8px;background-image:var(--noise);
+    opacity:.14;mix-blend-mode:overlay;pointer-events:none}
+  .brandrow{display:flex;align-items:center;gap:8px;position:relative;z-index:1}
+  .sbox{width:26px;height:26px;border-radius:5px;display:flex;align-items:center;justify-content:center;
+    font-size:16px;letter-spacing:0;color:#1A1400;padding-bottom:2px;border:1px solid #8A6A05;
+    background:linear-gradient(180deg,#FFE479,#F2C21E 52%,#CF9C06);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.8), 0 1px 3px rgba(0,0,0,.5)}
+  .brandtxt{color:#F5F3EA;font-size:19px;letter-spacing:.12em;line-height:1;text-shadow:0 -1px 0 rgba(0,0,0,.85), 0 1px 0 rgba(255,255,255,.12)}
+  .brandrule{height:3px;border-radius:2px;background:linear-gradient(180deg,#FFE479,#E0AE08);
+    box-shadow:0 1px 0 rgba(0,0,0,.6);position:relative;z-index:1}
+  .brandsub{color:#9AA0A8;font-size:6px;letter-spacing:.22em;position:relative;z-index:1}
 
-  .presetbar{flex:1;background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;
-             box-shadow:0 5px 14px rgba(0,0,0,.26);display:flex;align-items:center;gap:10px;padding:0 12px;min-width:0}
-  .plabel{font-size:7px;letter-spacing:.18em;color:var(--muted)}
-  .pfield{flex:1;background:var(--field);border:1px solid var(--line);border-radius:4px;padding:5px 10px 4px;
-          font-size:13px;letter-spacing:.07em;min-width:0;overflow:hidden;white-space:nowrap;
-          box-shadow:inset 0 1px 2px rgba(0,0,0,.06)}
-  .ptag{background:#DDE0E4;border:1px solid #B4B8BE;border-radius:3px;padding:4px 9px 3px;
-        font-size:7px;letter-spacing:.14em;flex:none;color:var(--ink)}
-  .circ{width:28px;height:28px;border-radius:50%;background:var(--field);border:1.5px solid var(--ink);
-        display:flex;align-items:center;justify-content:center;flex:none;box-shadow:0 1px 2px rgba(0,0,0,.16)}
-  .mastercard{width:128px;flex:none;background:var(--panel);border:1.5px solid var(--ink);border-radius:8px;
-              box-shadow:0 5px 14px rgba(0,0,0,.26);display:flex;align-items:center;gap:9px;padding:0 10px}
-  .mlabel{font-size:7px;letter-spacing:.14em;line-height:1.2;color:var(--ink2);width:32px}
+  .presetbar{position:relative;flex:1;display:flex;align-items:center;gap:10px;padding:0 12px;min-width:0;
+    border-radius:10px;border:2px solid var(--edge);
+    background:linear-gradient(180deg, var(--panel-hi) 0%, #EDEDE6 55%, var(--panel-lo) 100%);
+    box-shadow:inset 0 2px 0 rgba(255,255,255,.95), inset 0 -2px 4px rgba(0,0,0,.12), 0 8px 16px rgba(0,0,0,.4)}
+  .presetbar::after{content:"";position:absolute;inset:0;border-radius:8px;background-image:var(--noise);
+    opacity:.12;mix-blend-mode:multiply;pointer-events:none}
+  .plabel{font-size:7.5px;letter-spacing:.18em;color:#5C6068;position:relative;z-index:1;
+    text-shadow:0 1px 0 rgba(255,255,255,.7)}
+  .pfield{position:relative;z-index:1;flex:1;min-width:0;overflow:hidden;white-space:nowrap;
+    font-size:14px;letter-spacing:.1em;padding:5px 10px 4px;border-radius:6px;border:2px solid var(--edge);color:#15181C;
+    background:linear-gradient(180deg,#E9EAE2 0%, #FBFBF6 25%, #FFFFFF 100%);
+    box-shadow:inset 0 2px 4px rgba(0,0,0,.22), inset 0 -1px 0 #FFF}
+  .ptag{position:relative;z-index:1;flex:none;font-size:7.5px;letter-spacing:.14em;padding:4px 10px 3px;border-radius:999px;
+    border:2px solid var(--edge);color:#2A2200;
+    background:linear-gradient(180deg,#FFE479,#F2C21E 55%,#D6A207);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.75), 0 1px 2px rgba(0,0,0,.3)}
+  .circ{position:relative;z-index:1;flex:none;width:32px;height:32px;border-radius:50%;border:2px solid var(--edge);
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(180deg,#FFFFFF 0%, #EFEFE9 48%, #D9DAD2 100%);
+    box-shadow:0 3px 0 #A8ABA3, 0 6px 10px rgba(0,0,0,.26), inset 0 1px 0 #FFF}
+  .sparks{width:96px;flex:none;display:flex;align-items:center;justify-content:center;gap:6px}
+  .mastercard{position:relative;width:118px;flex:none;display:flex;align-items:center;gap:9px;padding:0 10px;
+    border-radius:10px;border:2px solid var(--edge);
+    background:linear-gradient(180deg, var(--panel-hi) 0%, #EDEDE6 55%, var(--panel-lo) 100%);
+    box-shadow:inset 0 2px 0 rgba(255,255,255,.95), inset 0 -2px 4px rgba(0,0,0,.12), 0 8px 16px rgba(0,0,0,.4)}
+  .mlabel{font-size:7px;letter-spacing:.14em;line-height:1.2;color:#2A2E34;width:34px;position:relative;z-index:1;
+    text-shadow:0 1px 0 rgba(255,255,255,.75)}
+  .boltcard{position:relative;width:56px;flex:none;display:flex;align-items:center;justify-content:center;
+    border-radius:10px;border:2px solid var(--edge);
+    background:linear-gradient(180deg, var(--panel-hi) 0%, #EDEDE6 55%, var(--panel-lo) 100%);
+    box-shadow:inset 0 2px 0 rgba(255,255,255,.95), inset 0 -2px 4px rgba(0,0,0,.12), 0 8px 16px rgba(0,0,0,.4)}
 
   /* ---------- rail ---------- */
-  .railhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;flex:none}
-  .railpill{font-size:7.5px;letter-spacing:.16em;color:var(--ink);padding-bottom:2px;
-            border-bottom:2px solid var(--acc,var(--gold))}
+  .railhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;flex:none;position:relative;z-index:1}
+  .railpill{font-size:7px;letter-spacing:.12em;padding:2px 8px 1px;border-radius:999px;color:#F3F2EC;
+    background:linear-gradient(180deg,#3C4046,#14171B);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.3), 0 1px 2px rgba(0,0,0,.3);text-shadow:0 -1px 0 rgba(0,0,0,.7)}
   .acidcard{flex:1;display:flex;flex-direction:column;gap:8px;min-height:0}
   .segs{flex:1;display:flex;flex-direction:column;gap:5px;min-height:0}
-  .seg{border:1px solid var(--line);border-radius:3px;background:var(--field);flex:1}
-  .seg.on{background:var(--green);border-color:#2C6040}
-  .seg.hot{background:var(--gold);border-color:#B08C10}
+  .seg{flex:1;border-radius:5px;border:2px solid var(--edge);
+    background:linear-gradient(180deg,#E6E7DF,#FBFBF6);
+    box-shadow:inset 0 2px 3px rgba(0,0,0,.20), inset 0 -1px 0 #FFF}
+  .seg.on{background:linear-gradient(180deg,#4C8A5B 0%, #2F6B3D 55%, #1F4A29 100%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.35), inset 0 -2px 4px rgba(0,0,0,.45), 0 0 8px rgba(47,107,61,.45)}
+  .seg.hot{background:linear-gradient(180deg,#FFE479 0%, #F2C21E 55%, #D6A207 100%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.7), inset 0 -2px 4px rgba(0,0,0,.35), 0 0 10px rgba(242,194,30,.5)}
   .acidrow{display:flex;gap:8px;min-height:0;flex:1;position:relative}
   .acidcol{flex:1;display:flex;flex-direction:column;min-height:0}
-  .pointer{position:absolute;right:-3px;top:33.3%;margin-top:-5px;width:0;height:0;border-left:6px solid var(--ink);
-           border-top:5px solid transparent;border-bottom:5px solid transparent}
-  .pct{font-size:15px;letter-spacing:.03em;line-height:1}
-  .pctsub{font-size:6.5px;letter-spacing:.06em;color:var(--muted);margin-top:3px;font-style:italic;font-weight:500}
-  .bars{display:flex;align-items:flex-end;gap:4px;height:44px;margin-top:auto}
-  .bar{flex:1;background:var(--green);border-radius:1px}
-  .bar.hot{background:var(--gold)}
-  .randbtn{width:100%;background:var(--field);border:1.5px solid var(--ink);border-radius:6px;
-           box-shadow:0 1px 2px rgba(0,0,0,.16);display:flex;align-items:center;justify-content:center;gap:7px;
-           padding:9px 0 8px;font-size:8px;letter-spacing:.1em;flex:none}
-  .sig{font-size:6px;letter-spacing:.14em;color:#9AA0A8;line-height:1.5;flex:none;padding-left:2px;font-weight:500}
-  .sig b{color:#DDE1E6}
+  .pointer{position:absolute;right:-7px;top:33.3%;margin-top:-7px;width:0;height:0;border-left:8px solid #F2C21E;
+    border-top:7px solid transparent;border-bottom:7px solid transparent;
+    filter:drop-shadow(0 1px 0 rgba(255,255,255,.6))}
+  .pct{font-size:15px;letter-spacing:.04em;line-height:1;text-shadow:0 1px 0 rgba(255,255,255,.8)}
+  .pctsub{font-size:6.5px;letter-spacing:.06em;color:#5C6068;margin-top:3px;font-style:italic;
+    text-shadow:0 1px 0 rgba(255,255,255,.6)}
+  .bars{display:flex;align-items:flex-end;gap:4px;height:44px;margin-top:auto;position:relative;z-index:1}
+  .bar{flex:1;border-radius:2px 2px 1px 1px;border:1.5px solid #1B3E24;
+    background:linear-gradient(90deg,#3C7C4C,#2F6B3D 60%,#22512E);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
+  .bar.hot{border-color:#8A6A05;background:linear-gradient(90deg,#FFD95C,#F2C21E 60%,#D6A207);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
+  .randbtn{width:100%;flex:none;display:flex;align-items:center;justify-content:center;gap:7px;
+    padding:9px 0 8px;border-radius:9px;border:2px solid var(--edge);font-size:8px;letter-spacing:.1em;color:#1A1D22;
+    background:linear-gradient(180deg,#FFFFFF 0%, #F0F1EA 46%, #DCDDD5 100%);
+    box-shadow:0 3px 0 #A8ABA3, 0 6px 10px rgba(0,0,0,.26), inset 0 1px 0 #FFF;
+    text-shadow:0 1px 0 rgba(255,255,255,.85)}
+  .sig{flex:none;padding-left:2px;font-size:6px;letter-spacing:.14em;line-height:1.5;color:#B6BBC2;
+    text-shadow:0 -1px 0 rgba(0,0,0,.8)}
+  .sig b{color:#F2C21E}
 
   /* ---------- wavetable ---------- */
-  .oscs{display:flex;gap:20px;flex:1;min-height:0}
+  .oscs{display:flex;gap:20px;flex:1;min-height:0;position:relative;z-index:1}
   .osc{flex:1;display:flex;flex-direction:column;gap:8px;min-width:0;position:relative}
   .osc + .osc{padding-left:20px}
-  .osc + .osc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--line)}
+  .osc + .osc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;border-radius:2px;
+    background:linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,.16) 50%, rgba(255,255,255,.55));
+    box-shadow:1px 0 0 rgba(255,255,255,.6)}
   .oschead{display:flex;align-items:center;justify-content:space-between}
-  .oscname{font-size:8px;letter-spacing:.14em;color:var(--ink2)}
+  .oscname{font-size:8px;letter-spacing:.14em;text-shadow:0 1px 0 rgba(255,255,255,.75)}
   .oscKnobs{display:flex;justify-content:space-between;align-items:flex-start;gap:4px}
-  .wtfoot{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:10px;flex:none}
+  .wtfoot{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:10px;flex:none;position:relative;z-index:1}
 
   /* ---------- misc ---------- */
   .spacer{flex:1}
+  .mks{position:absolute;pointer-events:none;opacity:.55}
+
+  .screen svg.sticker{width:50px;height:50px}
 </style>
 </head>
 <body>
 <div class="art">
+  <div class="screw" style="left:2px;top:2px"></div>
+  <div class="screw" style="left:1189px;top:2px"></div>
+  <div class="screw" style="left:2px;top:809px"></div>
+  <div class="screw" style="left:1189px;top:809px"></div>
+
+  <!-- segni d'usura nel fondo finestra -->
+  <svg class="mks" style="left:6px;top:250px" width="120" height="220" viewBox="0 0 120 220">
+    <path d="M18 0 L14 60 L22 84 L16 150 L20 220" fill="none" stroke="#2E3030" stroke-width="2.5"/>
+    <path d="M14 60 L0 70 M22 84 L34 96" fill="none" stroke="#2E3030" stroke-width="2"/>
+  </svg>
+  <svg class="mks" style="right:0;bottom:180px" width="90" height="160" viewBox="0 0 90 160">
+    <path d="M90 22 L58 34 L46 74 L12 92" fill="none" stroke="#2E3030" stroke-width="2.5"/>
+    <path d="M58 34 L64 56 M46 74 L26 70" fill="none" stroke="#2E3030" stroke-width="2"/>
+  </svg>
 
   <!-- ================= HEADER ================= -->
   <div class="head">
@@ -191,11 +319,22 @@
       <div class="btn gold" style="padding:7px 16px 6px">SAVE</div>
     </div>
 
+    <div class="sparks">
+      <svg width="20" height="20" viewBox="0 0 20 20"><path d="M10 1 L11.6 8.4 L19 10 L11.6 11.6 L10 19 L8.4 11.6 L1 10 L8.4 8.4 Z" fill="#F6D22C" stroke="#121014" stroke-width="2"/></svg>
+      <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1 L8.2 5.8 L13 7 L8.2 8.2 L7 13 L5.8 8.2 L1 7 L5.8 5.8 Z" fill="#F6D22C" stroke="#121014" stroke-width="1.8"/></svg>
+      <svg width="12" height="18" viewBox="0 0 12 18"><path d="M7 1 L1 10 h4 L5 17 L11 8 H7 Z" fill="#F6D22C" stroke="#121014" stroke-width="2"/></svg>
+    </div>
+
     <div class="mastercard">
       <div class="mlabel">MASTER</div>
       <div class="knob k40" style="--a:34deg"><i class="notch"></i></div>
     </div>
 
+    <div class="boltcard">
+      <svg width="26" height="34" viewBox="0 0 26 34">
+        <path d="M15 2 L3 19 h7 L9 32 L23 14 h-7 Z" fill="#F6D22C" stroke="#121014" stroke-width="3" stroke-linejoin="miter"/>
+      </svg>
+    </div>
   </div>
 
   <!-- ================= MAIN ================= -->
@@ -228,6 +367,7 @@
               <div class="seg on"></div>
             </div>
           </div>
+          <div class="pointer"></div>
         </div>
         <div>
           <div class="pct">72 %</div>
@@ -295,6 +435,12 @@
               <polyline points="0,30 140,28 240,24 272,20 292,10 306,34 318,62 336,80 370,90 430,95 520,97"
                 fill="none" stroke="#F6D22C" stroke-width="3.5" vector-effect="non-scaling-stroke" stroke-linejoin="miter"/>
             </svg>
+            <svg class="sticker" style="position:absolute;left:16px;bottom:7px;transform:rotate(-7deg)" width="50" height="50" viewBox="0 0 52 52">
+              <circle cx="26" cy="26" r="22" fill="#F6D22C" stroke="#121014" stroke-width="3"/>
+              <path d="M15 20 L23 24 M37 20 L29 24" stroke="#121014" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="20" cy="28" r="3.2" fill="#121014"/><circle cx="32" cy="28" r="3.2" fill="#121014"/>
+              <path d="M18 38 L22 34 L26 37 L30 33 L34 37" fill="none" stroke="#121014" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </div>
 
           <div class="spacer"></div>
@@ -321,7 +467,7 @@
                   <span class="tog on"></span><span class="tog"></span><span class="tog"></span><span class="sw">SW</span>
                 </div>
               </div>
-              <div class="screen" style="height:92px">
+              <div class="screen" style="height:76px">
                 <svg viewBox="0 0 200 60" preserveAspectRatio="none">
                   <path d="M0 20 H200 M0 40 H200" stroke="#2E3030" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
                   <polyline points="0,36 10,20 20,44 30,14 40,50 52,22 62,40 72,10 84,48 96,18 108,42 120,12 132,46 144,20 156,38 168,8 180,44 192,24 200,36"
@@ -343,7 +489,7 @@
                   <span class="tog"></span><span class="tog on"></span><span class="tog"></span><span class="sw">SW</span>
                 </div>
               </div>
-              <div class="screen" style="height:92px">
+              <div class="screen" style="height:76px">
                 <svg viewBox="0 0 200 60" preserveAspectRatio="none">
                   <path d="M0 20 H200 M0 40 H200" stroke="#2E3030" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
                   <polyline points="0,30 12,14 24,10 36,22 48,44 60,52 72,46 84,28 96,12 108,10 120,22 132,42 144,50 156,44 168,26 180,12 192,14 200,30"
@@ -385,7 +531,7 @@
               <path d="M0 64 H200" stroke="#2E3030" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
               <polyline points="0,64 14,10 40,30 152,30 186,64"
                 fill="none" stroke="#F6D22C" stroke-width="3" vector-effect="non-scaling-stroke" stroke-linejoin="miter"/>
-              <g fill="#F6D22C">
+              <g fill="#F6D22C" stroke="#121014" stroke-width="2">
                 <rect x="11" y="7" width="7" height="7"/><rect x="37" y="27" width="7" height="7"/>
                 <rect x="149" y="27" width="7" height="7"/><rect x="183" y="61" width="7" height="7"/>
               </g>
@@ -408,7 +554,7 @@
               <path d="M0 64 H200" stroke="#2E3030" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
               <polyline points="0,64 22,10 52,34 140,34 180,64"
                 fill="none" stroke="#F6D22C" stroke-width="3" vector-effect="non-scaling-stroke" stroke-linejoin="miter"/>
-              <g fill="#F6D22C">
+              <g fill="#F6D22C" stroke="#121014" stroke-width="2">
                 <rect x="19" y="7" width="7" height="7"/><rect x="49" y="31" width="7" height="7"/>
                 <rect x="137" y="31" width="7" height="7"/><rect x="177" y="61" width="7" height="7"/>
               </g>
@@ -483,6 +629,7 @@
         <!-- DRIVE -->
         <div class="panel zone-red" style="flex:1.5">
           <div class="phead"><span class="ptitle">DRIVE</span>
+            <svg width="18" height="18" viewBox="0 0 18 18"><path d="M9 1 L10.5 7.5 L17 9 L10.5 10.5 L9 17 L7.5 10.5 L1 9 L7.5 7.5 Z" fill="#F6D22C" stroke="#121014" stroke-width="2"/></svg>
           </div>
           <div class="spacer"></div>
           <div class="row-c" style="justify-content:space-around">
@@ -499,6 +646,7 @@
         <!-- DELAY -->
         <div class="panel zone-orange" style="flex:1.5">
           <div class="phead"><span class="ptitle">DELAY</span>
+            <svg width="16" height="20" viewBox="0 0 12 18"><path d="M7 1 L1 10 h4 L5 17 L11 8 H7 Z" fill="#F6D22C" stroke="#121014" stroke-width="2"/></svg>
           </div>
           <div class="spacer"></div>
           <div class="row-c" style="justify-content:space-around">
@@ -518,7 +666,10 @@
         <!-- REVERB -->
         <div class="panel zone-blue" style="flex:2">
           <div class="phead"><span class="ptitle">REVERB</span>
-            <span class="led"></span>
+            <div class="row-c" style="gap:8px">
+              <span class="led"></span>
+              <svg width="16" height="20" viewBox="0 0 12 18"><path d="M7 1 L1 10 h4 L5 17 L11 8 H7 Z" fill="#F6D22C" stroke="#121014" stroke-width="2"/></svg>
+            </div>
           </div>
           <div class="spacer"></div>
           <div class="row-c" style="justify-content:space-between;align-items:center;gap:12px">
